@@ -1,6 +1,6 @@
 # Uplift Modeling & Marketing Campaign Optimization
 
-An end-to-end causal machine learning project built to optimize marketing campaigns by predicting individual customer response and maximizing return on investment (ROI).
+An end-to-end causal machine learning project built to optimize marketing campaigns by predicting individual customer response and maximizing return on investment (ROI) using real-world e-commerce data.
 
 ---
 
@@ -13,11 +13,20 @@ This project implements Causal Machine Learning using an X-Learner meta-learning
 
 ---
 
-## Key Features
-* **Synthetic Data Generation:** Simulated a randomized control trial (RCT) customer dataset with features, treatment assignments, and conversion outcomes.
-* **Causal Meta-Learner:** Built an EconML XLearner pipeline utilizing LightGBM base estimators to compute individual uplift scores.
-* **Model Evaluation:** Generated cumulative gain Qini Curves to validate that the model outperforms random baseline targeting.
-* **Budget Simulation:** Calculated incremental conversions under custom marketing budget constraints.
+## Dataset
+* **Source:** Kevin Hillstrom MineThatData E-Mail Analytics Dataset (Kaggle).
+* **Scale:** 64,000 customer records from a randomized controlled trial (RCT).
+* **Treatment ($T$):** Customers split across promotional email campaigns vs. a control group (`No E-Mail`).
+* **Outcome ($Y$):** Customer conversion and purchase behavior.
+
+---
+
+## Key Features & Steps
+* **Data Processing:** Cleaned 64k records and mapped email segments into binary treatment and control groups.
+* **Feature Engineering:** One-hot encoded categorical customer history variables (recency, spending history segments, zip codes, and shopping channels).
+* **Causal Meta-Learner:** Built an EconML XLearner pipeline utilizing LightGBM base estimators to compute individual uplift scores (CATE).
+* **Model Evaluation:** Generated cumulative gain Qini Curves and calculated the Area Under the Uplift Curve (AUUC) score.
+* **Financial ROI Simulation:** Simulated corporate budget constraints (e.g., 20% target cap) to prove net profit gains over random baseline targeting.
 
 ---
 
@@ -27,11 +36,6 @@ This project implements Causal Machine Learning using an X-Learner meta-learning
 * LightGBM
 * EconML
 * Matplotlib
-
----
-
-## Results & Evaluation
-The model's performance was evaluated using a cumulative gain Qini Curve. The resulting chart proves that targeting users based on high uplift scores captures significantly more incremental conversions early on compared to random baseline guessing.
 
 ---
 
